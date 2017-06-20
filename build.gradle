@@ -8,6 +8,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
@@ -33,5 +34,7 @@ dependencies {
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
-    testCompile("junit:junit")
+
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.11'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 }
