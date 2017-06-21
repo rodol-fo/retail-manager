@@ -1,6 +1,7 @@
+package fo.rodol.retail.manager.web
+
 import fo.rodol.retail.manager.domain.Shop
 import fo.rodol.retail.manager.service.ShopsService
-import fo.rodol.retail.manager.web.ShopsController
 import org.springframework.http.MediaType
 import spock.lang.Specification
 
@@ -9,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
 
-class ShopsApiSpecification extends Specification {
+class ShopsControllerSpecification extends Specification {
 
     def shopsService = Mock(ShopsService)
 
