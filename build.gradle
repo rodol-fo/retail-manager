@@ -25,15 +25,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
-    compile("org.springframework.boot:spring-boot-starter-jetty")
-    // end::jetty[]
-    // tag::actuator[]
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    // end::actuator[]
+    compile "org.springframework.boot:spring-boot-starter-jetty"
 
     testCompile 'org.codehaus.groovy:groovy-all'
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
