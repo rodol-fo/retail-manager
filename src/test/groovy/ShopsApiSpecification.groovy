@@ -13,7 +13,7 @@ class ShopsApiSpecification extends Specification {
 
     def shopsService = Mock(ShopsService)
 
-    def controller = new ShopsController(shopsService: shopsService)
+    def controller = new ShopsController(shopsService)
 
     def mockMvc = standaloneSetup(controller).build()
 
