@@ -22,3 +22,7 @@ curl -XPOST http://localhost:8080/shops -H "Content-Type: application/json" -d '
 }
 '
 ``` 
+To find a shop by geolocation:
+```
+curl "http://localhost:8080/shops?lat=50&lng=10"
+``` 
