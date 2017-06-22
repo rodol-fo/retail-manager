@@ -14,6 +14,10 @@ public class Shop {
 
     private ShopAddress shopAddress;
 
+    private Double lat;
+
+    private Double lng;
+
     public String getShopName() {
         return shopName;
     }
@@ -28,6 +32,22 @@ public class Shop {
 
     public void setShopAddress(ShopAddress shopAddress) {
         this.shopAddress = shopAddress;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
     }
 
     @Override
@@ -48,7 +68,7 @@ public class Shop {
         return result;
     }
 
-    static class ShopAddress {
+    public static class ShopAddress {
 
         public ShopAddress() {
         }

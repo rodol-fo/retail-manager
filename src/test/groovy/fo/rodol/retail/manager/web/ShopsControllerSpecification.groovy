@@ -110,6 +110,6 @@ class ShopsControllerSpecification extends Specification {
                     }
                 }
             }
-        """, true))
+        """))
     }
 }
