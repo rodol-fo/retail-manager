@@ -7,7 +7,9 @@ class ShopsServiceSpecification extends Specification {
 
     def geolocationService = Mock(GeolocationService)
 
-    def shopsService = new ShopsServiceImpl(geolocationService)
+    def shopMap = new HashMap<>()
+
+    def shopsService = new ShopsServiceImpl(geolocationService, shopMap)
 
     def 'saves a shop'() {
 
@@ -36,5 +38,23 @@ class ShopsServiceSpecification extends Specification {
 
         then:
         1 * geolocationService.findLatLonAndUpdateShop(shop)
+    }
+
+    def 'gets the nearest shop'() {
+
+        given:
+
+        def shopMap = [
+            "a shop that's near" : new Shop("a shop that's near", 123, "SW1 122", 51, 10.5),
+            "a shop that's far" : new Shop("a shop that's far", 456, "EC1 345", 85, 33)
+        ]
+
+        def shopsServiceNearest = new ShopsServiceImpl(geolocationService, shopMap)
+
+        when:
+        def shop = shopsServiceNearest.findNearestShop(50, 10).get()
+
+        then:
+        shop.shopName == "a shop that's near"
     }
 }

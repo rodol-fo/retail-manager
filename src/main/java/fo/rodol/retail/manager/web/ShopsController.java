@@ -7,11 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -30,6 +34,14 @@ class ShopsController {
         return shopsService.findShop(newShop.getShopName())
                 .map(shop -> replaceExistingShop(shop, newShop))
                 .orElseGet(() -> saveNewShop(newShop));
+    }
+
+    @RequestMapping(value = "/shops", method = GET)
+    public ResponseEntity<Shop> findNearestShop(@RequestParam Double lat, @RequestParam Double lng) {
+
+        return shopsService.findNearestShop(lat, lng)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     private ResponseEntity<ShopResponse> replaceExistingShop(Shop existingShop, Shop newShop) {

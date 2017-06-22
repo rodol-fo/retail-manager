@@ -10,6 +10,13 @@ public class Shop {
         this.shopAddress = new ShopAddress(addressNumber, postcode);
     }
 
+    public Shop(String shopName, int addressNumber, String postcode, Double lat, Double lng) {
+        this.shopName = shopName;
+        this.shopAddress = new ShopAddress(addressNumber, postcode);
+        this.lat = lat;
+        this.lng = lng;
+    }
+
     private String shopName;
 
     private ShopAddress shopAddress;

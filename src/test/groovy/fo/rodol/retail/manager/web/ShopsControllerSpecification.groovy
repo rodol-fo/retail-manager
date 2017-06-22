@@ -5,6 +5,7 @@ import fo.rodol.retail.manager.service.ShopsService
 import org.springframework.http.MediaType
 import spock.lang.Specification
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -111,5 +112,23 @@ class ShopsControllerSpecification extends Specification {
                 }
             }
         """))
+    }
+
+    def 'returns the nearest shop when a user does a GET on /shops with their lat and long'() {
+
+        given:
+        shopsService
+
+        when:
+        def response = mockMvc.perform(
+                get("/shops")
+                        .param('lat', '50')
+                        .param('lng', '10'))
+
+        then:
+        response.andExpect(status().isOk())
+
+        and:
+        1 * shopsService.findNearestShop(50, 10) >> Optional.of(new Shop("Near shop", 234, "S3456"))
     }
 }

@@ -61,4 +61,5 @@ class GeolocationServiceSpecification extends Specification {
         shop.lat == 37.4224764
         shop.lng == -122.0842499
     }
+
 }
